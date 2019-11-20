@@ -13,7 +13,8 @@
     "require": {
         "php": ">=7.1",
         "arikaim/utils": "*",
-        "arikaim/collection": "*"
+        "arikaim/collection": "*",
+        "arikaim/http": "*"
     },
     "autoload": {       
         "psr-4": {
