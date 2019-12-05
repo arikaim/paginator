@@ -1,6 +1,6 @@
 {
     "name": "arikaim/paginator",
-    "description": "Arikam paginator package",
+    "description": "Arikam CMS paginator package",
     "keywords": ["cms", "paginator"],
     "type": "library",
     "license": "GPL-3.0-or-later",
@@ -12,9 +12,9 @@
     "homepage": "http://arikaim.com",
     "require": {
         "php": ">=7.1",
-        "arikaim/utils": "*",
-        "arikaim/collection": "*",
-        "arikaim/http": "*"
+        "arikaim/utils": "^1.0.0",
+        "arikaim/collection": "^1.0.0",
+        "arikaim/http": "^1.0.0"
     },
     "autoload": {       
         "psr-4": {
