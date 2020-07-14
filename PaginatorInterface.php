@@ -34,4 +34,18 @@ interface PaginatorInterface
      * @return mixed
      */
     public function getFirstItem();
+
+    /**
+     * Convert paginator data to array
+     *
+     * @return array
+     */
+    public function toArray();
+
+    /**
+     * Return items count
+     *
+     * @return integer
+     */
+    public function getItemsCount();
 }

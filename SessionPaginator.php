@@ -104,7 +104,7 @@ class SessionPaginator
     {            
         $pageSize = (empty($pageSize) == true) ? Self::getRowsPerPage($namespace) : $pageSize;
         $currentPage = (empty($currentPage) == true) ? Self::getCurrentPage($namespace) : $currentPage;
-
+               
         $paginator = Paginator::create($source,$currentPage,$pageSize);
         $data = $paginator->toArray();
 
@@ -113,6 +113,7 @@ class SessionPaginator
             $paginator = Paginator::create($source,1,$pageSize);
             $data = $paginator->toArray();           
         }
+      
         Self::savePaginator($namespace,$data['paginator']);
         
         return $paginator;
