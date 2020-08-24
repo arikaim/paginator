@@ -135,7 +135,7 @@ class Paginator implements PaginatorInterface
      */
     public function getLastItem()
     {
-        return (is_array($this->items) == true) ? end($this->items) : Self::UNKNOWN;
+        return (\is_array($this->items) == true) ? \end($this->items) : Self::UNKNOWN;
     }
 
     /**
@@ -165,7 +165,7 @@ class Paginator implements PaginatorInterface
      */
     public function getItemsCount()
     {
-        return count($this->items);
+        return \count($this->items);
     }
 
     /**
@@ -206,7 +206,7 @@ class Paginator implements PaginatorInterface
      */
     public static function create($source, $page = 1, $perPage = Self::DEFAULT_PER_PAGE)
     {       
-        if (is_null($source) == true || empty($source) == true) {
+        if (\is_null($source) == true || empty($source) == true) {
             return new Self();
         };
         
@@ -223,7 +223,7 @@ class Paginator implements PaginatorInterface
                 $paginator = new ArrayPaginator($source->toArray(),$page,$perPage);
                 break;
             }                             
-            case is_array($source): {
+            case \is_array($source): {
                 $paginator = new ArrayPaginator($source,$page,$perPage);
                 break;
             }
@@ -247,7 +247,8 @@ class Paginator implements PaginatorInterface
     protected function sliceItems($items)
     {    
         $offset = ($this->currentPage - 1) * $this->getPerPage();
-        return array_slice($items,$offset,$this->getPerPage());      
+
+        return \array_slice($items,$offset,$this->getPerPage());      
     }
 
     /**
@@ -257,6 +258,6 @@ class Paginator implements PaginatorInterface
      */
     protected function calcLastPage()
     {
-        return max((int)ceil($this->total / $this->perPage), 1);
+        return \max((int)\ceil($this->total / $this->perPage), 1);
     }
 }

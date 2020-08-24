@@ -28,7 +28,7 @@ class ArrayPaginator extends Paginator implements PaginatorInterface
     {      
         $this->currentPage = $page;
         $this->perPage = $perPage;
-        $this->total = count($items);
+        $this->total = \count($items);
         $this->lastPage = $this->calcLastPage();
         $this->items = $this->sliceItems($items);       
     }

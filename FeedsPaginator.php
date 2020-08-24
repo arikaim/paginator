@@ -31,7 +31,7 @@ class FeedsPaginator extends Paginator implements PaginatorInterface
         $this->items = $source->fetch($page,$perPage)->getItems();
      
         if (empty($source->getPageKey()) == true) {           
-            $this->total = count($this->items);
+            $this->total = \count($this->items);
             $this->items = $this->sliceItems($this->items);
             $this->lastPage = $this->calcLastPage();           
         } else {           

@@ -26,7 +26,7 @@ class JsonPaginator extends ArrayPaginator implements PaginatorInterface
      */
     public function __construct($json, $page, $perPage = Paginator::DEFAULT_PER_PAGE)
     {      
-        $items = json_decode($json,true);
+        $items = \json_decode($json,true);
         parent::__construct($items,$page,$perPage);       
     }
 }

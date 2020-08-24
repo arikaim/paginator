@@ -40,6 +40,7 @@ class SessionPaginator
     public static function setViewType($type, $namespace = null)
     {
         $type = (empty($type) == true) ? Paginator::TABLE_VIEW : $type;
+        
         return Session::set(Utils::createKey('paginator.view.type',$namespace),$type);
     }
 
