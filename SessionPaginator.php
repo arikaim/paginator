@@ -109,12 +109,12 @@ class SessionPaginator
         $paginator = Paginator::create($source,$currentPage,$pageSize);
         $data = $paginator->toArray();
 
-        if ($paginator->getItemsCount() == 0 && $currentPage > 1) {
+        if ($paginator->getItemsCount() == 0 && $currentPage > 1) {         
             Self::setCurrentPage(1,$namespace);
             $paginator = Paginator::create($source,1,$pageSize);
-            $data = $paginator->toArray();           
+            $data = $paginator->toArray();                  
         }
-      
+             
         Self::savePaginator($namespace,$data['paginator']);
         
         return $paginator;

@@ -26,7 +26,7 @@ class DbPaginator extends Paginator implements PaginatorInterface
      */
     public function __construct($builder, $page, $perPage = Paginator::DEFAULT_PER_PAGE)
     {          
-        $this->total = $builder->toBase()->getCountForPagination();
+        $this->total = $builder->toBase()->getCountForPagination();      
         $this->items = $this->total ? $builder->forPage($page,$perPage)->get(['*']) : [];
         $this->currentPage = $page;
         $this->perPage = $perPage;
