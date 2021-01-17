@@ -24,7 +24,7 @@ class FeedsPaginator extends Paginator implements PaginatorInterface
      * @param integer $page
      * @param string|integer $perPage
      */
-    public function __construct($source, $page = 1, $perPage = Paginator::DEFAULT_PER_PAGE)
+    public function __construct($source, int $page = 1, int $perPage = Paginator::DEFAULT_PER_PAGE)
     {                 
         $this->currentPage = $page;
         $this->perPage = $perPage;

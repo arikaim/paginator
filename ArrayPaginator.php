@@ -24,7 +24,7 @@ class ArrayPaginator extends Paginator implements PaginatorInterface
      * @param integer $page
      * @param integer $perPage
      */
-    public function __construct($items, $page, $perPage = Paginator::DEFAULT_PER_PAGE)
+    public function __construct(array $items, int $page = 1, int $perPage = Paginator::DEFAULT_PER_PAGE)
     {      
         $this->currentPage = $page;
         $this->perPage = $perPage;

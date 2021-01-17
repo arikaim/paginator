@@ -26,7 +26,7 @@ interface PaginatorInterface
      *
      * @return integer
      */
-    public function getCurrentPage();
+    public function getCurrentPage(): int;
 
     /**
      * Return first item
@@ -40,12 +40,12 @@ interface PaginatorInterface
      *
      * @return array
      */
-    public function toArray();
+    public function toArray(): array;
 
     /**
      * Return items count
      *
      * @return integer
      */
-    public function getItemsCount();
+    public function getItemsCount(): int;
 }

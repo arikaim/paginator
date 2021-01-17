@@ -71,20 +71,25 @@ class Paginator implements PaginatorInterface
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(
+        int $currentPage = 1, 
+        array $items = [], 
+        int $perPage = Self::DEFAULT_PER_PAGE, 
+        int $lastPage = 1,
+        int $total = 1
+    )
     {
-        $this->currentPage = 1;
-        $this->lastPage = 1;
-        $this->items = [];
-     
-        $this->perPage = Self::DEFAULT_PER_PAGE;
-        $this->total = 0;
+        $this->currentPage = $currentPage;
+        $this->lastPage = $lastPage;
+        $this->items = $items;     
+        $this->perPage = $perPage;
+        $this->total = $total;
     }    
 
     /**
      * Return items
      *
-     * @return array
+     * @return mixed
      */
     public function getItems()
     {
@@ -96,7 +101,7 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    public function getCurrentPage()
+    public function getCurrentPage(): int
     {
         if (empty($this->currentPage) == true) {
             return 1;   
@@ -115,7 +120,7 @@ class Paginator implements PaginatorInterface
      */
     public function getFirstItem()
     {
-        return (isset($this->items[0]) == true) ? $this->items[0] : null;
+        return $this->items[0] ?? null;
     }
 
     /**
@@ -123,7 +128,7 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    public function getTotalItems()
+    public function getTotalItems(): int
     {
         return (empty($this->total) == true) ? 0 : $this->total;
     }
@@ -143,7 +148,7 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    public function getLastPage()
+    public function getLastPage(): int
     {        
         return $this->lastPage;
     }
@@ -153,7 +158,7 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    public function getPerPage()
+    public function getPerPage(): int
     {
         return $this->perPage;
     }
@@ -163,7 +168,7 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    public function getItemsCount()
+    public function getItemsCount(): int
     {
         return \count($this->items);
     }
@@ -173,7 +178,7 @@ class Paginator implements PaginatorInterface
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'paginator' => $this->getPaginatorData(),
@@ -186,7 +191,7 @@ class Paginator implements PaginatorInterface
      *
      * @return array
      */
-    public function getPaginatorData()
+    public function getPaginatorData(): array
     {
         return [
             'current_page' => $this->getCurrentPage(),            
@@ -199,12 +204,12 @@ class Paginator implements PaginatorInterface
     /**
      * Create paginator
      *
-     * @param object|array|json $source   
+     * @param object|array|string $source   
      * @param integer $page
      * @param integer|null $perPage                         
      * @return PaginatorInterface
      */
-    public static function create($source, $page = 1, $perPage = Self::DEFAULT_PER_PAGE)
+    public static function create($source, int $page = 1, int $perPage = Self::DEFAULT_PER_PAGE)
     {       
         if (\is_null($source) == true || empty($source) == true) {
             return new Self();
@@ -244,7 +249,7 @@ class Paginator implements PaginatorInterface
      * @param array $items
      * @return array
      */
-    protected function sliceItems($items)
+    protected function sliceItems(array $items)
     {    
         $offset = ($this->currentPage - 1) * $this->getPerPage();
 
@@ -256,8 +261,8 @@ class Paginator implements PaginatorInterface
      *
      * @return integer
      */
-    protected function calcLastPage()
+    protected function calcLastPage(): int
     {
-        return \max((int)\ceil($this->total / $this->perPage), 1);
+        return \max((int)\ceil($this->total / $this->perPage),1);
     }
 }
