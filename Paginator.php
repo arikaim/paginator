@@ -59,7 +59,7 @@ class Paginator implements PaginatorInterface
      *
      * @var integer
      */
-    protected $perPage;
+    protected $perPage = Self::DEFAULT_PER_PAGE;
 
     /**
      * Total number of items before slice
@@ -160,7 +160,7 @@ class Paginator implements PaginatorInterface
      */
     public function getPerPage(): int
     {
-        return $this->perPage;
+        return (empty($this->perPage) == true) ? Self::DEFAULT_PER_PAGE : $this->perPage;
     }
 
     /**
