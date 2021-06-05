@@ -240,6 +240,7 @@ class Paginator implements PaginatorInterface
                 $paginator = new Self();
             }
         }
+        
         return $paginator;
     }
 
