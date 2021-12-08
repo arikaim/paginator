@@ -15,6 +15,20 @@ namespace Arikaim\Core\Paginator;
 interface PaginatorInterface
 {    
     /**
+     * Get last page
+     *
+     * @return integer
+     */
+    public function getLastPage(): int;
+    
+    /**
+     * Get paginator data
+     *
+     * @return array
+     */
+    public function getPaginatorData(): array;
+
+    /**
      * Return paginator items 
      *
      * @return mixed

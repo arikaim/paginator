@@ -36,7 +36,7 @@ class Paginator implements PaginatorInterface
     /**
      * Paginator items
      *
-     * @var array
+     * @var array|mixed
     */
     protected $items;
 
@@ -73,17 +73,17 @@ class Paginator implements PaginatorInterface
      */
     public function __construct(
         int $currentPage = 1, 
-        array $items = [], 
+        $items = [], 
         int $perPage = Self::DEFAULT_PER_PAGE, 
-        int $lastPage = 1,
+        ?int $lastPage = 1,
         int $total = 1
     )
     {
-        $this->currentPage = $currentPage;
-        $this->lastPage = $lastPage;
+        $this->currentPage = ($currentPage == 0) ? 1 : $currentPage;       
         $this->items = $items;     
         $this->perPage = $perPage;
         $this->total = $total;
+        $this->lastPage = $lastPage ?? $this->calcLastPage();
     }    
 
     /**
