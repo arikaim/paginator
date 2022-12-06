@@ -195,7 +195,7 @@ class Paginator implements PaginatorInterface
     {
         return [
             'current_page' => $this->getCurrentPage(),            
-            'last_page'    => $this->getLastPage(),          
+            'last_page'    => $this->lastPage,          
             'per_page'     => $this->getPerPage(),                
             'total'        => $this->getTotalItems()                         
         ];
@@ -211,7 +211,7 @@ class Paginator implements PaginatorInterface
      */
     public static function create($source, int $page = 1, int $perPage = Self::DEFAULT_PER_PAGE)
     {       
-        if (\is_null($source) == true || empty($source) == true) {
+        if ($source === null || empty($source) == true) {
             return new Self();
         };
         
