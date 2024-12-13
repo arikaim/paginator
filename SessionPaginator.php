@@ -11,6 +11,7 @@ namespace Arikaim\Core\Paginator;
 
 use Arikaim\Core\Utils\Utils;
 use Arikaim\Core\Paginator\Paginator;
+use Arikaim\Core\Paginator\PaginatorFactory;
 use Arikaim\Core\Http\Session;
 
 /**
@@ -102,19 +103,19 @@ class SessionPaginator
      * @param string|null $namespace
      * @param integer|null $pageSize
      * @param integer|null $currentPage
-     * @return array
+     * @return mixed
      */
     public static function create($source, ?string $namespace = null, ?int $pageSize = null, ?int $currentPage = null)
     {            
         $pageSize = (empty($pageSize) == true) ? Self::getRowsPerPage($namespace) : $pageSize;
         $currentPage = (empty($currentPage) == true) ? Self::getCurrentPage($namespace) : $currentPage;
                
-        $paginator = Paginator::create($source,$currentPage,$pageSize);
+        $paginator = PaginatorFactory::create($source,$currentPage,$pageSize);
         $data = $paginator->toArray();
 
         if ($paginator->getItemsCount() == 0 && $currentPage > 1) {         
             Self::setCurrentPage(1,$namespace);
-            $paginator = Paginator::create($source,1,$pageSize);
+            $paginator = PaginatorFactory::create($source,1,$pageSize);
             $data = $paginator->toArray();                  
         }             
         Self::savePaginator($namespace,$data['paginator']);
